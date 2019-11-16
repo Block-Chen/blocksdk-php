@@ -1,0 +1,24 @@
+{
+  "name": "block-cloud/blocksdk-php",
+  "description": "Pure (no dependencies) implementation of blocksdk", 
+  "version" : "dev-master",
+  "type": "library",
+  "authors": [
+	{
+		"name": "BlockChain SDK Service",
+		"homepage": "https://blocksdk.com" 
+	}
+  ], 
+  "homepage": "https://github.com/block-cloud/blocksdk-php",
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "BlockSDK\\": "src/"
+    },
+    "files": ["src/blocksdk.php"]
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.4.0",
+    "squizlabs/php_codesniffer": "^2.0.0"
+  }
+}
