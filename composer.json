@@ -3,7 +3,7 @@
   "description": "Pure (no dependencies) implementation of blocksdk", 
   "type": "library",
   "minimum-stability": "dev",
-  "prefer-stable": true  
+  "prefer-stable": true,
   "authors": [
 	{
 		"name": "BlockChain SDK Service",
