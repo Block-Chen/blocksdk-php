@@ -1,8 +1,9 @@
 {
   "name": "block-cloud/blocksdk-php",
   "description": "Pure (no dependencies) implementation of blocksdk", 
-  "version" : "dev-master",
   "type": "library",
+  "minimum-stability": "dev",
+  "prefer-stable": true  
   "authors": [
 	{
 		"name": "BlockChain SDK Service",
