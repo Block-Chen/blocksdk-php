@@ -3,28 +3,33 @@
 	namespace BlockSDK;
 	
 	class WebHook extends Base{
-		public function Create($callback,$category,$address){
+		public function create($request){
 			
 			return $this->request("POST","/hook",[
-				"callback" => $callback,
-				"category" => $category,
-				"address" => $address
+				"callback" => $request['callback'],
+				"category" => $request['category'],
+				"address" => $request['address']
 			]);
 		}
 		
-		public function List(){
-
-			return $this->request("GET","/hook");
+		public function list($request){
+			$request['offset'] = empty($request['offset'])?0:$request['offset'];
+			$request['limit'] = empty($request['limit'])?10:$request['limit'];
+			
+			return $this->request("GET","/hook",[
+				"offset" => $request['offset'],
+				"limit" => $request['limit']
+			]);
 		}
 		
-		public function Get($hook_id){
+		public function get($request){
 
-			return $this->request("GET","/hook/{$hook_id}");
+			return $this->request("GET","/hook/{$request['hook_id']}");
 		}
 		
-		public function Delete($hook_id){
+		public function delete($request){
 
-			return $this->request("POST","/hook/{$hook_id}/delete");
+			return $this->request("POST","/hook/{$request['hook_id']}/delete");
 		}
 	
 	}
