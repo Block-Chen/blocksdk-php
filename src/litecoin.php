@@ -2,9 +2,7 @@
 
 	namespace BlockSDK;
 	
-	class Litecoin {
-		use Base;
-		
+	class Litecoin extends Base{
 		public function getBlockInfo(){
 			return $this->request("GET","/ltc/block");
 		}		

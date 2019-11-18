@@ -2,9 +2,7 @@
 
 	namespace BlockSDK;
 	
-	class Ethereum {
-		use Base;
-		
+	class Ethereum extends Base{
 		public function getBlockInfo(){
 			return $this->request("GET","/eth/block");
 		}		

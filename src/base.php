@@ -2,7 +2,7 @@
 
 	namespace BlockSDK;
 	
-	trait Base{
+	class Base{
 		public $api_token;
 		
 		function __construct(string $api_token){

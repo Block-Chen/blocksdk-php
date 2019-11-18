@@ -2,9 +2,7 @@
 
 	namespace BlockSDK;
 	
-	class Bitcoin{
-		use Base;
-		
+	class Bitcoin extends Base{
 		public function getBlockInfo(){
 			return $this->request("GET","/btc/block");
 		}		

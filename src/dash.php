@@ -2,9 +2,7 @@
 
 	namespace BlockSDK;
 	
-	class Dash {
-		use Base;
-		 
+	class Dash extends Base{
 		public function getBlockInfo(){
 			return $this->request("GET","/dash/block");
 		}		

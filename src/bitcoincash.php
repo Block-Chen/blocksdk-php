@@ -2,9 +2,7 @@
 
 	namespace BlockSDK;
 	
-	class BictoinCash{
-		use Base;
-		
+	class BictoinCash extends Base{
 		public function getBlockInfo(){
 			return $this->request("GET","/bch/block");
 		}		

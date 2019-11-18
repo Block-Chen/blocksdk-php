@@ -2,9 +2,7 @@
 
 	namespace BlockSDK;
 	
-	class Monero {
-		use Base;
-		
+	class Monero extends Base{
 		public function getBlockInfo(){
 			return $this->request("GET","/xmr/block");
 		}		
