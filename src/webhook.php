@@ -12,7 +12,7 @@
 			]);
 		}
 		
-		public function list($request){
+		public function list($request = null){
 			$request['offset'] = empty($request['offset'])?0:$request['offset'];
 			$request['limit'] = empty($request['limit'])?10:$request['limit'];
 			

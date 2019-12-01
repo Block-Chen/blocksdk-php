@@ -5,30 +5,40 @@
 	class Base{
 		public $api_token;
 		
-		function __construct(string $api_token){
+		function __construct(string $api_token = ''){
 			$this->api_token = $api_token;
 		}
 		
 		public function request($method,$path,$data = []){
 			$url = "https://api.blocksdk.com/v1" . $path;
 			
-			if($method == "POST"){
-				$json= json_encode($data);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-			}else if($method == "GET" && count($data) > 0){
+			if($method == "GET" && count($data) > 0){
 				$url = $url . "?";
 				foreach($data as $key => $value){
-					$url = $url . $key . "=" . $value . "&";
+					if($value === true){
+						$url = $url . $key . "=true&";
+					}else if($value === false){
+						$url = $url . $key . "=false&";
+					}else{
+						$url = $url . $key . "=" . $value . "&";
+					}
 				}
 			}
+			//echo $url;
+			$ch = curl_init($url);
 			
-			$ch = curl_init($url);                                                                      
+			if($method == "POST"){
+				$json = json_encode($data);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+			} 
+			
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);  
 			curl_setopt($ch, CURLOPT_HEADER, 1);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','x-api-key: '. $this->api_token));
 			$result = curl_exec($ch);
 			curl_close($ch);
+
 			
 			$header_array = array();
 			$result_decode = array();
@@ -41,7 +51,7 @@
 					$header_array['statusCode'] = empty($statusCode[1])?0:$statusCode[1];
 				}else if($i == count($result_row) - 1){
 					$result_decode = json_decode($result_row[$i],true);
-				}else if($i != 0 && !isset($fields[1])){
+				}else if(isset($fields[1]) == false){
 					if(substr($fields[0], 0, 1) == "\t"){
 						end($header_array);
 						$header_array[key($header_array)] .= "\r\n\t".trim($fields[0]);
@@ -55,8 +65,6 @@
 						$header_array[$field_title]=trim($fields[1]);
 					}else if(is_array($header_array[$field_title])){
 						$header_array[$field_title] = array_merge($header_array[$fields[0]], array(trim($fields[1])));
-					}else{
-						$header_array[$field_title] = array_merge(array($header_array[$fields[0]]), array(trim($fields[1])));
 					}
 				}
 			}

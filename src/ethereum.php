@@ -3,18 +3,26 @@
 	namespace BlockSDK;
 	
 	class Ethereum extends Base{
-		public function getBlockInfo(){
+		public function getBlockChain(){
 			return $this->request("GET","/eth/block");
 		}		
 		
 		public function getBlock($request){
+			$request['rawtx'] = isset($request['rawtx'])==false?false:$request['rawtx'];
 			
-			return $this->request("GET","/eth/block/{$request['block']}");
+			$request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+			$request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+			
+			return $this->request("GET","/eth/block/{$request['block']}",[
+				"rawtx" => $request['rawtx'],
+				"offset" => $request['offset'],
+				"limit" => $request['limit']
+			]);
 		}
 		
 		public function listAddress($request){
-			$request['offset'] = empty($request['offset'])?0:$request['offset'];
-			$request['limit'] = empty($request['limit'])?10:$request['limit'];
+			$request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+			$request['limit'] = isset($request['limit'])==false?10:$request['limit'];
 			
 			return $this->request("GET","/eth/address",[
 				"offset" => $request['offset'],
@@ -23,7 +31,7 @@
 		}
 		
 		public function createAddress($request){
-			$request['name'] = empty($request['name'])?null:$request['name'];
+			$request['name'] = isset($request['name'])==false?null:$request['name'];
 			
 			return $this->request("POST","/eth/address",[
 				"name" => $request['name']
@@ -31,8 +39,18 @@
 		}
 		
 		public function getAddressInfo($request){
+			$request['reverse'] = isset($request['reverse'])==false?true:$request['reverse'];
+			$request['rawtx'] = isset($request['rawtx'])==false?null:$request['rawtx'];
 			
-			return $this->request("GET","/eth/address/{$request['address']}");
+			$request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+			$request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+			
+			return $this->request("GET","/eth/address/{$request['address']}",[
+				"reverse" => $request['reverse'],
+				"rawtx" => $request['rawtx'],
+				"offset" => $request['offset'],
+				"limit" => $request['limit']
+			]);
 		}
 		
 		public function getAddressBalance($request){
@@ -40,14 +58,27 @@
 			return $this->request("GET","/eth/address/{$request['address']}/balance");
 		}
 		
-		public function sendToAddress($request,){
+		public function sendToAddress($request){
+			if(isset($request['gwei']) == false){
+				$blockChain = $this->getBlockChain();
+				$request['gwei'] = $blockChain['medium_gwei'];
+			}
 			
 			return $this->request("POST","/eth/address/{$request['address']}/sendtoaddress",[
 				"address" => $request['address'],
 				"amount" => $request['amount'],
-				"private_spend_key" => $request['private_spend_key']
+				"private_spend_key" => $request['private_spend_key'],
+				"gwei" => $request['gwei']
 			]);
 		}
+		
+		
+		public function sendTransaction($request){
+			
+			return $this->request("POST","/eth/transaction",[
+				"sign_hex" => $request['sign_hex']
+			]);
+		}	
 		
 		public function getTransaction($request){
 			
