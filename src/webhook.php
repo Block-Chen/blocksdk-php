@@ -31,6 +31,26 @@
 
 			return $this->request("POST","/hook/{$request['hook_id']}/delete");
 		}
+		
+		public function listResponse($request = []){
+			$request['offset'] = empty($request['offset'])?0:$request['offset'];
+			$request['limit'] = empty($request['limit'])?10:$request['limit'];
+			
+			return $this->request("GET","/hook/response",[
+				"offset" => $request['offset'],
+				"limit" => $request['limit']
+			]);			
+		}		
+		
+		public function getResponse($request){
+			$request['offset'] = empty($request['offset'])?0:$request['offset'];
+			$request['limit'] = empty($request['limit'])?10:$request['limit'];
+			
+			return $this->request("GET","/hook/{$request['hook_id']}/response",[
+				"offset" => $request['offset'],
+				"limit" => $request['limit']
+			]);			
+		}
 	
 	}
 ?>

@@ -4,6 +4,7 @@
 	
 	class BitcoinCash extends Base{
 		public function getBlockChain(){
+			
 			return $this->request("GET","/bch/block");
 		}		
 		
@@ -133,7 +134,10 @@
 		}
 		
 		public function sendMany($request){
-			
+			if(isset($request['kbfee']) == false){
+				$blockChain = $this->getBlockChain();
+				$request['kbfee'] = $blockChain['medium_fee_per_kb'];
+			}
 			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
 			
 			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/sendmany",[
