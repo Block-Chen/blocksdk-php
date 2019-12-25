@@ -9,6 +9,21 @@
 			$this->api_token = $api_token;
 		}
 		
+		public function getUsage($request = []){
+			$request['start_date'] = empty($request['start_date'])?date("Y-m-d",time() - 604800):$request['start_date'];
+			$request['end_date'] = empty($request['end_date'])?date("Y-m-d"):$request['end_date'];
+			
+			return $this->request("GET","/usage",[
+				"start_date" => $request['start_date'],
+				"end_date" => $request['end_date']
+			]);
+		}
+		
+		public function listPrice($request = []){
+			
+			return $this->request("GET","/price");
+		}
+		
 		public function request($method,$path,$data = []){
 			$url = "https://api.blocksdk.com/v1" . $path;
 			
@@ -24,9 +39,9 @@
 					}
 				}
 			}
-			//echo $url;
-			$ch = curl_init($url);
 			
+			$ch = curl_init($url);
+
 			if($method == "POST"){
 				$json = json_encode($data);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
@@ -39,7 +54,7 @@
 			$result = curl_exec($ch);
 			curl_close($ch);
 
-			
+
 			$header_array = array();
 			$result_decode = array();
 			$result_row = explode("\n",$result);
