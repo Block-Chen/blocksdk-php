@@ -61,8 +61,10 @@
 		}
 		
 		public function loadWallet($request){
+
 			return $this->request("POST","/dash/wallet/{$request['wallet_id']}/load",[
-				"seed_wif" => $request['seed_wif']
+				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password']
 			]);
 		}
 		
@@ -88,11 +90,13 @@
 		
 		public function createWalletAddress($request){
 			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			
 			return $this->request("POST","/dash/wallet/{$request['wallet_id']}/address",[
-				"seed_wif" => $request['seed_wif']
+				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password']
 			]);
-		}		
+		}			
 		
 		public function getWalletBalance($request){
 			
@@ -122,11 +126,13 @@
 			}
 			
 			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			
 			return $this->request("POST","/dash/wallet/{$request['wallet_id']}/sendtoaddress",[
 				"address" => $request['address'],
 				"amount" => $request['amount'],
 				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password'],
 				"kbfee" => $request['kbfee']
 			]);
 		}
@@ -134,13 +140,15 @@
 		public function sendMany($request){
 			
 			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			
 			return $this->request("POST","/dash/wallet/{$request['wallet_id']}/sendmany",[
 				"to" => $request['to'],
-				"seed_wif" => $request['seed_wif']
+				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password']
 			]);
 		}
-		
+	
 		public function sendTransaction($request){
 			
 			return $this->request("POST","/dash/transaction",[

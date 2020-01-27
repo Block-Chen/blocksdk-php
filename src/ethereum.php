@@ -30,6 +30,19 @@
 			]);
 		}
 		
+		public function loadAddress($request){
+
+			return $this->request("POST","/eth/address/{$request['address']}/load",[
+				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password']
+			]);
+		}
+		
+		public function unLoadAddress($request){
+			
+			return $this->request("POST","/eth/address/{$request['address']}/unload");
+		}
+		
 		public function createAddress($request){
 			$request['name'] = isset($request['name'])==false?null:$request['name'];
 			
@@ -64,10 +77,14 @@
 				$request['gwei'] = $blockChain['medium_gwei'];
 			}
 			
+			$request['private_key'] = isset($request['private_key'])==false ?null:$request['private_key'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			
 			return $this->request("POST","/eth/address/{$request['from']}/sendtoaddress",[
 				"address" => $request['to'],
 				"amount" => $request['amount'],
 				"private_key" => $request['private_key'],
+				"password" => $request['password'],
 				"gwei" => $request['gwei']
 			]);
 		}

@@ -62,9 +62,10 @@
 		}
 		
 		public function loadWallet($request){
-		
+
 			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/load",[
-				"seed_wif" => $request['seed_wif']
+				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password']
 			]);
 		}
 		
@@ -90,11 +91,13 @@
 		
 		public function createWalletAddress($request){
 			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			
 			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/address",[
-				"seed_wif" => $request['seed_wif']
+				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password']
 			]);
-		}		
+		}			
 		
 		public function getWalletBalance($request){
 			
@@ -133,25 +136,36 @@
 			]);
 		}
 		
-		public function sendMany($request){
+		public function sendToAddress($request){
 			if(isset($request['kbfee']) == false){
 				$blockChain = $this->getBlockChain();
 				$request['kbfee'] = $blockChain['medium_fee_per_kb'];
 			}
-			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
 			
-			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/sendmany",[
-				"to" => $request['to'],
-				"seed_wif" => $request['seed_wif']
+			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			
+			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/sendtoaddress",[
+				"address" => $request['address'],
+				"amount" => $request['amount'],
+				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password'],
+				"kbfee" => $request['kbfee']
 			]);
 		}
 		
-		public function sendTransaction($request){
+		public function sendMany($request){
 			
-			return $this->request("POST","/bch/transaction",[
-				"sign_hex" => $request['sign_hex']
+			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			
+			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/sendmany",[
+				"to" => $request['to'],
+				"seed_wif" => $request['seed_wif'],
+				"password" => $request['password']
 			]);
-		}		
+		}
+			
 		
 		public function getTransaction($request){
 			
