@@ -52,17 +52,34 @@
 				"private_spend_key" => $request['private_spend_key'],
 			]);
 		}
-		 
+		
+		public function loadAddress($request){
+
+			return $this->request("POST","/xmr/address/{$request['address_id']}/load",[
+				"private_spend_key" => $request['private_spend_key'],
+				"password" => $request['password']
+			]);
+		}
+		
+		public function unLoadAddress($request){
+			
+			return $this->request("POST","/xmr/address/{$request['address_id']}/unload");
+		}
+		
 		public function sendToAddress($request){
 			if(empty($request['kbfee']) == true){
 				$blockChain = $this->getBlockChain();
 				$request['kbfee'] = $blockChain['medium_fee_per_kb'];
 			}
 			
+			$request['private_spend_key'] = isset($request['private_spend_key'])==false ?null:$request['private_spend_key'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			
 			return $this->request("POST","/xmr/address/{$request['address_id']}/sendtoaddress",[
 				"address" => $request['address'],
 				"amount" => $request['amount'],
 				"private_spend_key" => $request['private_spend_key'],
+				"password" => $request['password'],
 				"kbfee" => $request['kbfee']
 			]);
 		}
