@@ -22,7 +22,18 @@ __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and sam
    ```
 
 ## Quick Examples
+### Create an Bitcoin client
+```php
+<?php
+use BlockSDK;
 
+$blockSDK = new BlockSDK("YOU_TOKEN");
+$btcClient = $blockSDK->createBitcoin();
+
+//or
+
+$btcClient = BlockSDK::createBitcoin("YOU_TOKEN");
+```
 
 [install-packagist]: https://packagist.org/packages/block-chen/blocksdk-php
 [composer]: http://getcomposer.org
