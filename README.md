@@ -34,6 +34,27 @@ $btcClient = $blockSDK->createBitcoin();
 
 $btcClient = BlockSDK::createBitcoin("YOU_TOKEN");
 ```
+### Get Address info
+```php
+<?php
+$addressInfo = $btcClient->getAddressInfo([
+    "address" => "18cBEMRxXHqzWWCxZNtU91F5sbUNKhL5PX",
+    "rawtx" => true,
+    "reverse" => true,
+    "offset" => 0,
+    "limit" => 10
+]);
+
+var_dump($addressInfo);
+```
+
+### Create an Bitcoin Wallet
+```php
+<?php
+$wallet = $btcClient->createWallet([
+    "name" => "test"
+]);
+```
 
 [install-packagist]: https://packagist.org/packages/block-chen/blocksdk-php
 [composer]: http://getcomposer.org
