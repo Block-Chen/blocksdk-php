@@ -17,3 +17,8 @@ __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and sam
    ```
 
 ## Quick Examples
+
+
+[install-packagist]: https://packagist.org/packages/block-chen/blocksdk-php
+[composer]: http://getcomposer.org
+[packagist]: http://packagist.org
