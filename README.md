@@ -7,7 +7,7 @@ __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and sam
 ## SDK Documentation
 [ Our BlockSDK-PHP Page ](https://docs.blocksdk.com/) includes all the documentation related to PHP SDK. Sample Codes, to Releases. Here are few quick links to get you there faster.
 * [ BlockSDK Developer Docs]
-* [ asdasd ](https://docs.blocksdk.com/)
+
 ## Prerequisites
 
    - PHP 5.5+
