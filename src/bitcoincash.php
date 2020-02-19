@@ -119,22 +119,6 @@
 				"limit" => $request['limit']
 			]);
 		}
-			
-		public function sendToAddress($request){
-			if(isset($request['kbfee']) == false){
-				$blockChain = $this->getBlockChain();
-				$request['kbfee'] = $blockChain['medium_fee_per_kb'];
-			}
-			
-			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
-			
-			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/sendtoaddress",[
-				"address" => $request['address'],
-				"amount" => $request['amount'],
-				"seed_wif" => $request['seed_wif'],
-				"kbfee" => $request['kbfee']
-			]);
-		}
 		
 		public function sendToAddress($request){
 			if(isset($request['kbfee']) == false){
