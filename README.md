@@ -6,7 +6,7 @@ __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and sam
 
 ## SDK Documentation
 [ Our BlockSDK-PHP Page ](https://docs.blocksdk.com/) includes all the documentation related to PHP SDK. Everything from SDK Wiki, to Sample Codes, to Releases. Here are few quick links to get you there faster.
-* [ BlockSDK Developer Docs] (https://docs.blocksdk.com/)
+* [ BlockSDK Developer Docs]
 
 ## Getting Started
 **Install the SDK** – Using [Composer] is the recommended way to install the
@@ -22,3 +22,4 @@ __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and sam
 [install-packagist]: https://packagist.org/packages/block-chen/blocksdk-php
 [composer]: http://getcomposer.org
 [packagist]: http://packagist.org
+[BlockSDK Developer Docs]: https://docs.blocksdk.com
