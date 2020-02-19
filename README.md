@@ -1,4 +1,5 @@
 # BlockSDK for PHP - Version 1
+[![@BLOCKSDK on Twitter]()](https://twitter.com/BlockSdk)
 
 The **BLOCKSDK for PHP** makes it easy for developers to access 
 BlockSDK API in their PHP code, and build robust applications and software
