@@ -21,10 +21,19 @@
 		},
 		"files": ["src/blocksdk.php"]
 	},
+    "require": {
+        "php": ">=5.5",
+        "ext-json": "*"
+    },
 	"require-dev": {
+		"ext-openssl": "*",
 		"phpunit/phpunit": "^5.4.0",
 		"squizlabs/php_codesniffer": "^2.0.0"
 	},
+    "suggest": {
+        "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",
+        "ext-curl": "To send requests using cURL"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
