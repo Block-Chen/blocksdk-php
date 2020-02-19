@@ -1,5 +1,5 @@
 {
-	"name": "block-cloud/blocksdk-php",
+	"name": "blockchen/blocksdk-php",
 	"description": "Pure (no dependencies) implementation of blocksdk", 
 	"keywords": ["blocksdk","blockchen","sdk","bitcoin","dash","monero","litecoin","ethereum","bitcoincash"],
 	"type": "library",
