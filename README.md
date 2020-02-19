@@ -13,7 +13,7 @@ __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and sam
    BlockSDK for PHP. The SDK is available via [Packagist] under the
    [`block-chen/blocksdk-php`][install-packagist] package. If Composer is installed globally on your system, you can run the following in the base directory of your project to add the SDK as a dependency:
    ```
-   composer require aws/aws-sdk-php
+   composer require block-chen/blocksdk-php
    ```
 
 ## Quick Examples
