@@ -1,5 +1,6 @@
 # PHP REST API SDK for BlockSDK
 [![@BLOCKSDK on Twitter](https://img.shields.io/badge/twitter-%40BLOCKSDK-blue.svg)](https://twitter.com/BlockSdk)
+[![@BLOCKSDK on Facebook](https://img.shields.io/badge/facebook-%40BLOCKSDK-blue.svg)](https://www.facebook.com/blocksdk)
 [![Total Downloads](https://img.shields.io/packagist/dt/block-chen/blocksdk-php.svg?style=flat)](https://packagist.org/packages/block-chen/blocksdk-php)
 
 __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and samples for REST API.
