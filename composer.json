@@ -13,7 +13,7 @@
 	"support": {
         "issues": "https://github.com/Block-Chen/blocksdk-php/issues"
     },
-	"homepage": "https://github.com/block-cloud/blocksdk-php",
+	"homepage": "https://github.com/Block-Chen/blocksdk-php",
 	"license": "Apache-2.0",
 	"autoload": {
 		"psr-4": {
