@@ -5,7 +5,7 @@
 __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and samples for REST API.
 
 ## SDK Documentation
-[ Our BlockSDK-PHP Page ](https://docs.blocksdk.com/) includes all the documentation related to PHP SDK. Everything from SDK Wiki, to Sample Codes, to Releases. Here are few quick links to get you there faster.
+[ Our BlockSDK-PHP Page ](https://docs.blocksdk.com/) includes all the documentation related to PHP SDK. Sample Codes, to Releases. Here are few quick links to get you there faster.
 * [ BlockSDK Developer Docs]
 
 ## Getting Started
