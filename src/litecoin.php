@@ -20,6 +20,19 @@
 			]);
 		}
 		
+		public function getMemPool($request = array()){
+			$request['rawtx'] = isset($request['rawtx'])==false ?false:$request['rawtx'];
+			
+			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
+			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
+			
+			return $this->request("GET","/ltc/mempool",[
+				"rawtx" => $request['rawtx'],
+				"offset" => $request['offset'],
+				"limit" => $request['limit']
+			]);
+		}
+		
 		public function getAddressInfo($request){
 			$request['reverse'] = isset($request['reverse'])==false ?true:$request['reverse'];
 			$request['rawtx'] = isset($request['rawtx'])==false ?null:$request['rawtx'];

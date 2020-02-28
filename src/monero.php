@@ -17,6 +17,19 @@
 			]);
 		}
 		
+		public function getMemPool($request = array()){
+			$request['rawtx'] = isset($request['rawtx'])==false ?false:$request['rawtx'];
+			
+			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
+			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
+			
+			return $this->request("GET","/xmr/mempool",[
+				"rawtx" => $request['rawtx'],
+				"offset" => $request['offset'],
+				"limit" => $request['limit']
+			]);
+		}
+		
 		public function listAddress($request){
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
