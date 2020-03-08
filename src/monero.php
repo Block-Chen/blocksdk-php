@@ -8,10 +8,13 @@
 		}		
 		
 		public function getBlock($request){
+			$request['rawtx'] = isset($request['rawtx'])==false ?false:$request['rawtx'];
+			
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
 			return $this->request("GET","/xmr/block/{$request['block']}",[
+				"rawtx" => $request['rawtx'],
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
 			]);
