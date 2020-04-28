@@ -172,5 +172,10 @@
 			
 			return $this->request("GET","/btc/transaction/{$request['hash']}");
 		}
+		
+		public function getTransactionTracking($request){
+			
+			return $this->request("GET","/btc/transaction/{$request['hash']}/tracking");
+		}
 	}
 ?>
