@@ -141,13 +141,15 @@
 			
 			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
 			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			$request['subtractfeefromamount'] = isset($request['subtractfeefromamount'])==false ?false:$request['subtractfeefromamount'];
 			
 			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/sendtoaddress",[
 				"address" => $request['address'],
 				"amount" => $request['amount'],
 				"seed_wif" => $request['seed_wif'],
 				"password" => $request['password'],
-				"kbfee" => $request['kbfee']
+				"kbfee" => $request['kbfee'],
+				"subtractfeefromamount" => $request['subtractfeefromamount']
 			]);
 		}
 		
@@ -155,11 +157,13 @@
 			
 			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
 			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			$request['subtractfeefromamount'] = isset($request['subtractfeefromamount'])==false ?false:$request['subtractfeefromamount'];
 			
 			return $this->request("POST","/bch/wallet/{$request['wallet_id']}/sendmany",[
 				"to" => $request['to'],
 				"seed_wif" => $request['seed_wif'],
-				"password" => $request['password']
+				"password" => $request['password'],
+				"subtractfeefromamount" => $request['subtractfeefromamount']
 			]);
 		}
 			
