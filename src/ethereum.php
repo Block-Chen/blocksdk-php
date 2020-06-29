@@ -92,13 +92,15 @@
 			
 			$request['private_key'] = isset($request['private_key'])==false ?null:$request['private_key'];
 			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			$request['gas_limit'] = isset($request['password'])==false ?null:$request['gas_limit'];
 			
 			return $this->request("POST","/eth/address/{$request['from']}/sendtoaddress",[
 				"address" => $request['to'],
 				"amount" => $request['amount'],
 				"private_key" => $request['private_key'],
 				"password" => $request['password'],
-				"gwei" => $request['gwei']
+				"gwei" => $request['gwei'],
+				"gas_limit" => $request['gas_limit']
 			]);
 		}
 		
