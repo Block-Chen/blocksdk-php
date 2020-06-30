@@ -97,7 +97,8 @@
 				"amount" => $request['amount'],
 				"private_spend_key" => $request['private_spend_key'],
 				"password" => $request['password'],
-				"kbfee" => $request['kbfee']
+				"kbfee" => $request['kbfee'],
+				"subtractfeefromamount" => $request['subtractfeefromamount']
 			]);
 		}
 		
