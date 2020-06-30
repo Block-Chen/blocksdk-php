@@ -90,6 +90,7 @@
 			
 			$request['private_spend_key'] = isset($request['private_spend_key'])==false ?null:$request['private_spend_key'];
 			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			$request['subtractfeefromamount'] = isset($request['subtractfeefromamount'])==false ?flase:$request['subtractfeefromamount'];
 			
 			return $this->request("POST","/xmr/address/{$request['address_id']}/sendtoaddress",[
 				"address" => $request['address'],
