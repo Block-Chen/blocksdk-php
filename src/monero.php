@@ -57,16 +57,13 @@
 			
 			return $this->request("GET","/xmr/address/{$request['address_id']}",[
 				"offset" => $request['offset'],
-				"limit" => $request['limit'],
-				"private_spend_key" => $request['private_spend_key'],
+				"limit" => $request['limit']
 			]);
 		}
 		
 		public function getAddressBalance($request){
 			
-			return $this->request("GET","/xmr/address/{$request['address_id']}/balance",[
-				"private_spend_key" => $request['private_spend_key'],
-			]);
+			return $this->request("GET","/xmr/address/{$request['address_id']}/balance",[]);
 		}
 		
 		public function loadAddress($request){
