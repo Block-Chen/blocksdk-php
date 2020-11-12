@@ -167,6 +167,12 @@
 			]);
 		}
 			
+		public function sendTransaction($request){
+			
+			return $this->request("POST","/bch/transaction",[
+				"sign_hex" => $request['sign_hex']
+			]);
+		}
 		
 		public function getTransaction($request){
 			
