@@ -46,7 +46,7 @@
 		public function loadAddress($request){
 
 			return $this->request("POST","/eth/address/{$request['address']}/load",[
-				"seed_wif" => $request['seed_wif'],
+				"private_key" => $request['private_key'],
 				"password" => $request['password']
 			]);
 		}
