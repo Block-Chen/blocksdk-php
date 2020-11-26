@@ -5,6 +5,14 @@
 
 __Welcome to BlockSDK PHP__. This repository contains BlockSDK's PHP SDK and samples for REST API.
 
+## Support various cryptocurrencies
+1.Bitcoin
+2.Bitcoin Cash
+3.Litecoin
+4.Dash
+5.Monero
+6.Ethereum , ERC20 Token
+
 ## SDK Documentation
 [ Our BlockSDK-PHP Page ](https://docs.blocksdk.com/) includes all the documentation related to PHP SDK. Sample Codes, to Releases. Here are few quick links to get you there faster.
 * [ BlockSDK Developer Docs]
