@@ -116,5 +116,31 @@
 			
 			return $this->request("GET","/eth/transaction/{$request['hash']}");
 		}
+		
+		public function getERC20Info($request){
+			return $this->request("GET","/eth/erc20/{$request['erc20-address']}");
+		}
+		public function getERC20Balance($reuqest){
+			return $this->request("GET","/eth/erc20/{$request['erc20-address']}/{$request['eth-address']}/balance");
+		}
+		public function getERC20Transfer($reuqest){
+			if(isset($request['gwei']) == false){
+				$blockChain = $this->getBlockChain();
+				$request['gwei'] = $blockChain['high_gwei'];
+			}
+			
+			$request['private_key'] = isset($request['private_key'])==false ?null:$request['private_key'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
+			$request['gas_limit'] = isset($request['gas_limit'])==false ?null:$request['gas_limit'];
+			
+			return $this->request("POST","/eth/erc20/{$request['erc20-address']}/{$request['from']}/transfer",[
+				"to" => $request['to'],
+				"amount" => $request['amount'],
+				"private_key" => $request['private_key'],
+				"password" => $request['password'],
+				"gwei" => $request['gwei'],
+				"gas_limit" => $request['gas_limit']
+			]);
+		}
 	}
 ?>
