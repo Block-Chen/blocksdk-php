@@ -120,10 +120,10 @@
 		public function getERC20Info($request){
 			return $this->request("GET","/eth/erc20/{$request['erc20-address']}");
 		}
-		public function getERC20Balance($reuqest){
+		public function getERC20Balance($request){
 			return $this->request("GET","/eth/erc20/{$request['erc20-address']}/{$request['eth-address']}/balance");
 		}
-		public function getERC20Transfer($reuqest){
+		public function getERC20Transfer($request){
 			if(isset($request['gwei']) == false){
 				$blockChain = $this->getBlockChain();
 				$request['gwei'] = $blockChain['high_gwei'];
