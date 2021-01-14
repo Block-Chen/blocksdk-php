@@ -4,7 +4,7 @@
 	
 	class Monero extends Base{
 		public function getBlockChain(){
-			return $this->request("GET","/xmr/block");
+			return $this->request("GET","/xmr/info");
 		}		
 		
 		public function getBlock($request){
@@ -13,7 +13,7 @@
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
-			return $this->request("GET","/xmr/block/{$request['block']}",[
+			return $this->request("GET","/xmr/blocks/{$request['block']}",[
 				"rawtx" => $request['rawtx'],
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
@@ -33,11 +33,11 @@
 			]);
 		}
 		
-		public function listAddress($request){
+		public function getAddresses($request){
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
-			return $this->request("GET","/xmr/address",[
+			return $this->request("GET","/xmr/addresses",[
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
 			]);
@@ -46,7 +46,7 @@
 		public function createAddress($request){
 			$request['name'] = empty($request['name'])==false?null:$request['name'];
 			
-			return $this->request("POST","/xmr/address",[
+			return $this->request("POST","/xmr/addresses",[
 				"name" => $request['name']
 			]);
 		}
@@ -55,7 +55,7 @@
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
-			return $this->request("GET","/xmr/address/{$request['address_id']}",[
+			return $this->request("GET","/xmr/addresses/{$request['address_id']}",[
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
 			]);
@@ -63,20 +63,20 @@
 		
 		public function getAddressBalance($request){
 			
-			return $this->request("GET","/xmr/address/{$request['address_id']}/balance",[]);
+			return $this->request("GET","/xmr/addresses/{$request['address_id']}/balance",[]);
 		}
 		
 		public function loadAddress($request){
 
-			return $this->request("POST","/xmr/address/{$request['address_id']}/load",[
+			return $this->request("POST","/xmr/addresses/{$request['address_id']}/load",[
 				"private_spend_key" => $request['private_spend_key'],
 				"password" => $request['password']
 			]);
 		}
 		
-		public function unLoadAddress($request){
+		public function unloadAddress($request){
 			
-			return $this->request("POST","/xmr/address/{$request['address_id']}/unload");
+			return $this->request("POST","/xmr/addresses/{$request['address_id']}/unload");
 		}
 		
 		public function sendToAddress($request){
@@ -89,7 +89,7 @@
 			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			$request['subtractfeefromamount'] = isset($request['subtractfeefromamount'])==false ?false:$request['subtractfeefromamount'];
 			
-			return $this->request("POST","/xmr/address/{$request['address_id']}/sendtoaddress",[
+			return $this->request("POST","/xmr/addresses/{$request['address_id']}/sendtoaddress",[
 				"address" => $request['address'],
 				"amount" => $request['amount'],
 				"private_spend_key" => $request['private_spend_key'],
@@ -99,9 +99,16 @@
 			]);
 		}
 		
+		public function sendTransaction($request){
+			
+			return $this->request("POST","/xmr/transactions/send",[
+				"hex" => $request['hex']
+			]);
+		}	
+		
 		public function getTransaction($request){
 			
-			return $this->request("GET","/xmr/transaction/{$request['hash']}");
+			return $this->request("GET","/xmr/transactions/{$request['hash']}");
 		}
 	}
 ?>

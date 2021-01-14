@@ -4,7 +4,7 @@
 	
 	class Bitcoin extends Base{
 		public function getBlockChain(){
-			return $this->request("GET","/btc/block");
+			return $this->request("GET","/btc/info");
 		}		
 		
 		public function getBlock($request){
@@ -13,7 +13,7 @@
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
-			return $this->request("GET","/btc/block/{$request['block']}",[
+			return $this->request("GET","/btc/blocks/{$request['block']}",[
 				"rawtx" => $request['rawtx'],
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
@@ -40,7 +40,7 @@
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
-			return $this->request("GET","/btc/address/{$request['address']}",[
+			return $this->request("GET","/btc/addresses/{$request['address']}",[
 				"reverse" => $request['reverse'],
 				"rawtx" => $request['rawtx'],
 				"offset" => $request['offset'],
@@ -49,50 +49,55 @@
 		}
 		
 		public function getAddressBalance($request){
-			return $this->request("GET","/btc/address/{$request['address']}/balance");
+			return $this->request("GET","/btc/addresses/{$request['address']}/balance");
 		}
 
 		
 		 
-		public function listWallet($request = null){
+		public function getWallets($request = null){
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
-			return $this->request("GET","/btc/wallet",[
+			return $this->request("GET","/btc/wallets",[
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
 			]);
+		}		
+		
+		public function getWallet($request){
+			
+			return $this->request("GET","/btc/wallets/" . $request['wallet_id']);
 		}
 		
-		public function createWallet($request = null){
+		public function createHdWallet($request = null){
 			$request['name'] = isset($request['name'])==false ?null:$request['name'];
 			
-			return $this->request("POST","/btc/wallet",[
+			return $this->request("POST","/btc/wallets/hd",[
 				"name" => $request['name']
 			]);
 		}
 		
 		public function loadWallet($request){
 
-			return $this->request("POST","/btc/wallet/{$request['wallet_id']}/load",[
-				"seed_wif" => $request['seed_wif'],
+			return $this->request("POST","/btc/wallets/{$request['wallet_id']}/load",[
+				"wif" => $request['wif'],
 				"password" => $request['password']
 			]);
 		}
 		
-		public function unLoadWallet($request){
+		public function unloadWallet($request){
 			
-			return $this->request("POST","/btc/wallet/{$request['wallet_id']}/unload");
+			return $this->request("POST","/btc/wallets/{$request['wallet_id']}/unload");
 		}
 		
-		public function listWalletAddress($request){
+		public function getWalletAddresses($request){
 			$request['address'] = isset($request['address'])==false ?null:$request['address'];
 			$request['hdkeypath'] = isset($request['hdkeypath'])==false ?null:$request['hdkeypath'];
 			
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
-			return $this->request("GET","/btc/wallet/{$request['wallet_id']}/address",[
+			return $this->request("GET","/btc/wallets/{$request['wallet_id']}/addresses",[
 				"address" => $request['address'],
 				"hdkeypath" => $request['hdkeypath'],
 				"offset" => $request['offset'],
@@ -101,30 +106,30 @@
 		}
 		
 		public function createWalletAddress($request){
-			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['wif'] = isset($request['wif'])==false ?null:$request['wif'];
 			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			
-			return $this->request("POST","/btc/wallet/{$request['wallet_id']}/address",[
-				"seed_wif" => $request['seed_wif'],
+			return $this->request("POST","/btc/wallets/{$request['wallet_id']}/addresses",[
+				"wif" => $request['wif'],
 				"password" => $request['password']
 			]);
 		}		
 		
 		public function getWalletBalance($request){
 			
-			return $this->request("GET","/btc/wallet/{$request['wallet_id']}/balance");
+			return $this->request("GET","/btc/wallets/{$request['wallet_id']}/balance");
 		}
 				
 		
-		public function getWalletTransaction($request){
-			$request['category'] = isset($request['category'])==false ?'all':$request['category'];
+		public function getWalletTransactions($request){
+			$request['type'] = isset($request['type'])==false ?'all':$request['type'];
 			$request['order'] = isset($request['order'])==false ?'desc':$request['order'];
 			
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
-			return $this->request("GET","/btc/wallet/{$request['wallet_id']}/transaction",[
-				"category" => $request['category'],
+			return $this->request("GET","/btc/wallets/{$request['wallet_id']}/transaction",[
+				"type" => $request['type'],
 				"order" => $request['order'],
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
@@ -137,14 +142,14 @@
 				$request['kbfee'] = $blockChain['medium_fee_per_kb'];
 			}
 			
-			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['wif'] = isset($request['wif'])==false ?null:$request['wif'];
 			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			$request['subtractfeefromamount'] = isset($request['subtractfeefromamount'])==false ?false:$request['subtractfeefromamount'];
 			
-			return $this->request("POST","/btc/wallet/{$request['wallet_id']}/sendtoaddress",[
+			return $this->request("POST","/btc/wallets/{$request['wallet_id']}/sendtoaddress",[
 				"address" => $request['address'],
 				"amount" => $request['amount'],
-				"seed_wif" => $request['seed_wif'],
+				"wif" => $request['wif'],
 				"password" => $request['password'],
 				"kbfee" => $request['kbfee'],
 				"subtractfeefromamount" => $request['subtractfeefromamount']
@@ -153,13 +158,13 @@
 		
 		public function sendMany($request){
 			
-			$request['seed_wif'] = isset($request['seed_wif'])==false ?null:$request['seed_wif'];
+			$request['wif'] = isset($request['wif'])==false ?null:$request['wif'];
 			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			$request['subtractfeefromamount'] = isset($request['subtractfeefromamount'])==false ?false:$request['subtractfeefromamount'];
 			
-			return $this->request("POST","/btc/wallet/{$request['wallet_id']}/sendmany",[
+			return $this->request("POST","/btc/wallets/{$request['wallet_id']}/sendmany",[
 				"to" => $request['to'],
-				"seed_wif" => $request['seed_wif'],
+				"wif" => $request['wif'],
 				"password" => $request['password'],
 				"subtractfeefromamount" => $request['subtractfeefromamount']
 			]);
@@ -167,19 +172,14 @@
 		
 		public function sendTransaction($request){
 			
-			return $this->request("POST","/btc/transaction",[
-				"sign_hex" => $request['sign_hex']
+			return $this->request("POST","/btc/transactions/send",[
+				"hex" => $request['hex']
 			]);
 		}		
 		
 		public function getTransaction($request){
 			
-			return $this->request("GET","/btc/transaction/{$request['hash']}");
-		}
-		
-		public function getTransactionTracking($request){
-			
-			return $this->request("GET","/btc/transaction/{$request['hash']}/tracking");
+			return $this->request("GET","/btc/transactions/{$request['hash']}");
 		}
 	}
 ?>
