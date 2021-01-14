@@ -5,18 +5,18 @@
 	class WebHook extends Base{
 		public function create($request){
 			
-			return $this->request("POST","/hook",[
+			return $this->request("POST","/hooks",[
 				"callback" => $request['callback'],
 				"category" => $request['category'],
 				"address" => $request['address']
 			]);
 		}
 		
-		public function list($request = null){
+		public function getWebhooks($request = null){
 			$request['offset'] = empty($request['offset'])?0:$request['offset'];
 			$request['limit'] = empty($request['limit'])?10:$request['limit'];
 			
-			return $this->request("GET","/hook",[
+			return $this->request("GET","/hooks",[
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
 			]);
@@ -24,29 +24,29 @@
 		
 		public function get($request){
 
-			return $this->request("GET","/hook/{$request['hook_id']}");
+			return $this->request("GET","/hooks/{$request['hook_id']}");
 		}
 		
 		public function delete($request){
 
-			return $this->request("POST","/hook/{$request['hook_id']}/delete");
+			return $this->request("DELETE","/hooks/{$request['hook_id']}");
 		}
 		
-		public function listResponse($request = []){
+		public function getResponses($request = []){
 			$request['offset'] = empty($request['offset'])?0:$request['offset'];
 			$request['limit'] = empty($request['limit'])?10:$request['limit'];
 			
-			return $this->request("GET","/hook/response",[
+			return $this->request("GET","/hooks/responses",[
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
 			]);			
 		}		
 		
-		public function getResponse($request){
+		public function getHookResponses($request){
 			$request['offset'] = empty($request['offset'])?0:$request['offset'];
 			$request['limit'] = empty($request['limit'])?10:$request['limit'];
 			
-			return $this->request("GET","/hook/{$request['hook_id']}/response",[
+			return $this->request("GET","/hooks/{$request['hook_id']}/responses",[
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
 			]);			

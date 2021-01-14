@@ -27,7 +27,7 @@
 			
 			$ch = curl_init($url);
 
-			if($method == "POST"){
+			if($method == "POST" || $method == "DELETE"){
 				$json = json_encode($data);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 			} 
