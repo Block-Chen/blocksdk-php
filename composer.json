@@ -19,7 +19,7 @@
 		"psr-4": {
 			"BlockSDK\\": "src/"
 		},
-		"files": ["src/base.php","src/blocksdk.php"]
+		"files": ["src/base.php","src/blocksdk.php","src/webhook.php"]
 	},
     "require": {
         "php": ">=5.5",
