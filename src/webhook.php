@@ -6,8 +6,8 @@
 		public function create($request){
 			
 			return $this->request("POST","/hooks",[
-				"callback" => $request['callback'],
-				"category" => $request['category'],
+				"callback_url" => $request['callback_url'],
+				"symbol" => $request['symbol'],
 				"address" => $request['address']
 			]);
 		}
