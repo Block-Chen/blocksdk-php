@@ -19,7 +19,7 @@
 		"psr-4": {
 			"BlockSDK\\": "src/"
 		},
-		"files": ["src/base.php","src/blocksdk.php","src/webhook.php"]
+		"files": ["src/base.php","src/blocksdk.php","src/market.php","src/token.php","src/tool.php","src/webhook.php","src/dash.php","src/bitcoin.php","src/bitcoincash.php","src/ethereum.php","src/litecoin.php","src/monero.php"]
 	},
     "require": {
         "php": ">=5.5",
