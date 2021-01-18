@@ -52,18 +52,27 @@
 		}
 		
 		public function getAddressInfo($request){
+			$request['private_spend_key'] = isset($request['private_spend_key'])==false ?null:$request['private_spend_key'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			$request['offset'] = isset($request['offset'])==false ?0:$request['offset'];
 			$request['limit'] = isset($request['limit'])==false ?10:$request['limit'];
 			
 			return $this->request("GET","/xmr/addresses/{$request['address_id']}",[
+				"private_spend_key" => $request['private_spend_key'],
+				"password" => $request['password'],
 				"offset" => $request['offset'],
 				"limit" => $request['limit']
 			]);
 		}
 		
 		public function getAddressBalance($request){
+			$request['private_spend_key'] = isset($request['private_spend_key'])==false ?null:$request['private_spend_key'];
+			$request['password'] = isset($request['password'])==false ?null:$request['password'];
 			
-			return $this->request("GET","/xmr/addresses/{$request['address_id']}/balance",[]);
+			return $this->request("GET","/xmr/addresses/{$request['address_id']}/balance",[
+				"private_spend_key" => $request['private_spend_key'],
+				"password" => $request['password']
+			]);
 		}
 		
 		public function loadAddress($request){
