@@ -168,51 +168,98 @@
 				"s" => $request['s']
 			]);
 		}
-		
-		public function getKIP17Tokens($request){
-			$request['offset'] = isset($request['offset'])==false?0:$request['offset'];
-			$request['limit'] = isset($request['limit'])==false?10:$request['limit'];
-			
-			return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/tokens",[
-				"offset" => $request['offset'],
-				"limit" => $request['limit']
-			]);
-		}
-		
-		public function getKIP17OwnerTokens($request){
-			$request['offset'] = isset($request['offset'])==false?0:$request['offset'];
-			$request['limit'] = isset($request['limit'])==false?10:$request['limit'];
-			
-			return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['owner_address']}/owner",[
-				"offset" => $request['offset'],
-				"limit" => $request['limit']
-			]);
-		}
-		
-		public function getKIP17CreatorTokens($request){
-			$request['offset'] = isset($request['offset'])==false?0:$request['offset'];
-			$request['limit'] = isset($request['limit'])==false?10:$request['limit'];
-			
-			return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['creator_address']}/creator",[
-				"offset" => $request['offset'],
-				"limit" => $request['limit']
-			]);
-		}
-		
-		public function getKIP17TokenInfo($request){
-			
-			return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['token_id']}/info",[
-			]);
-		}
-		
-		public function getKIP17TokenTransfers($request){
-			$request['offset'] = isset($request['offset'])==false?0:$request['offset'];
-			$request['limit'] = isset($request['limit'])==false?10:$request['limit'];
-			return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['token_id']}/transfers",[
-				"offset" => $request['offset'],
-				"limit" => $request['limit']
-			]);
-		}
+
+        public function getNfts($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/tokens",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getOwnerNfts($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['owner_address']}/owner",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getCreatorNfts($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['creator_address']}/creator",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getAuctionNfts($request){
+            $request['order_by'] = isset($request['order_by'])==false?'end_time':$request['order_by'];
+            $request['order_direction'] = isset($request['order_direction'])==false?'desc':$request['order_direction'];
+
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/auction",[
+                "order_by" => $request['order_by'],
+                "order_direction" => $request['order_direction'],
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getSaleNfts($request){
+            $request['order_direction'] = isset($request['order_direction'])==false?'desc':$request['order_direction'];
+
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['seller_address']}/sale",[
+                "order_direction" => $request['order_direction'],
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getNftBids($request){
+            $request['rawtx'] = isset($request['rawtx'])==false?0:$request['rawtx'];
+            $request['order_direction'] = isset($request['order_direction'])==false?'desc':$request['order_direction'];
+
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['token_id']}/bid",[
+                "order_direction" => $request['order_direction'],
+                "rawtx" => $request['rawtx'],
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getNftInfo($request){
+
+            return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['token_id']}/info",[
+            ]);
+        }
+
+        public function getNftTransfers($request){
+            $request['rawtx'] = isset($request['rawtx'])==false?0:$request['rawtx'];
+
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip17-tokens/{$request['contract_address']}/{$request['token_id']}/transfers",[
+                "rawtx" => $request['rawtx'],
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
 		
 		public function getContractRead($request){
 			$request['parameter_type'] = isset($request['parameter_type'])==false ?null:$request['parameter_type'];
