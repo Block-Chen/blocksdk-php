@@ -261,6 +261,75 @@
             ]);
         }
 		
+	public function getMultiNft($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip37-tokens/{$request['contract_address']}/tokens",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getMultiNftContractOwner($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip37-tokens/{$request['contract_address']}/{$request['owner_address']}/owners",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getMultiNftOwner($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip37-tokens/{$request['owner_address']}/owner",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getMultiNftCreator($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip37-tokens/{$request['contract_address']}/{$request['creator_address']}/creators",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getMultiNftContractCreator($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip37-tokens/{$request['creator_address']}/creator",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+
+        public function getMultiNftInfo($request){
+
+            return $this->request("GET","/klay/kip37-tokens/{$request['contract_address']}/{$request['token_id']}/info",[
+            ]);
+        }
+
+        public function getMultiNftTransfers($request){
+            $request['rawtx'] = isset($request['rawtx'])==false?0:$request['rawtx'];
+
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip37-tokens/{$request['contract_address']}/{$request['token_id']}/transfers",[
+                "rawtx" => $request['rawtx'],
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+		
 		public function getContractRead($request){
 			$request['parameter_type'] = isset($request['parameter_type'])==false ?null:$request['parameter_type'];
 			$request['parameter_data'] = isset($request['parameter_data'])==false ?null:$request['parameter_data'];
