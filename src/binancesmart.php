@@ -235,11 +235,21 @@ class BinanceSmart extends Base{
         ]);
     }
     
-    public function getMultiNft($request){
+         public function getMultiNft($request){
             $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
             $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
 
             return $this->request("GET","/bsc/bep1155-tokens/{$request['contract_address']}/tokens",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
+    
+    	public function getMultiNftOwnerList($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/bsc/bep1155-tokens/{$request['contract_address']}/{$request['token_id']}/list",[
                 "offset" => $request['offset'],
                 "limit" => $request['limit']
             ]);
