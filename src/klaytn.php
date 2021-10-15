@@ -270,6 +270,16 @@
                 "limit" => $request['limit']
             ]);
         }
+		
+	public function getMultiNftOwnerList($request){
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/klay/kip37-tokens/{$request['contract_address']}/{$request['token_id']}/list",[
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
 
         public function getMultiNftContractOwner($request){
             $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
