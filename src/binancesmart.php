@@ -313,6 +313,19 @@ class BinanceSmart extends Base{
                 "limit" => $request['limit']
             ]);
         }
+    
+        public function getMultiSaleNfts($request){
+            $request['order_direction'] = isset($request['order_direction'])==false?'desc':$request['order_direction'];
+
+            $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
+            $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
+
+            return $this->request("GET","/bsc/bep1155-tokens/{$request['contract_address']}/{$request['seller_address']}/sale",[
+                "order_direction" => $request['order_direction'],
+                "offset" => $request['offset'],
+                "limit" => $request['limit']
+            ]);
+        }
 
     public function getContractRead($request){
         $request['parameter_type'] = isset($request['parameter_type'])==false ?null:$request['parameter_type'];
