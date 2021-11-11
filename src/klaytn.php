@@ -301,7 +301,7 @@
             ]);
         }
 
-        public function getMultiNftCreator($request){
+        public function getMultiNftContractCreator($request){
             $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
             $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
 
@@ -311,7 +311,7 @@
             ]);
         }
 
-        public function getMultiNftContractCreator($request){
+        public function getMultiNftCreator($request){
             $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
             $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
 
