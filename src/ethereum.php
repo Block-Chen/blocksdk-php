@@ -320,7 +320,7 @@ class Ethereum extends Base{
             $request['offset'] = isset($request['offset'])==false?0:$request['offset'];
             $request['limit'] = isset($request['limit'])==false?10:$request['limit'];
 
-            return $this->request("GET","/keth/erc1155-tokens/{$request['contract_address']}/{$request['seller_address']}/sale",[
+            return $this->request("GET","/eth/erc1155-tokens/{$request['contract_address']}/{$request['seller_address']}/sale",[
                 "order_direction" => $request['order_direction'],
                 "offset" => $request['offset'],
                 "limit" => $request['limit']
