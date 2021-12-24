@@ -427,6 +427,10 @@
 				"amount" => $request['amount'],
 				"gwei" => $request['gwei'],
 				"gas_limit" => $request['gas_limit'],
+				"nonce" => $request['nonce'],
+				"v" => $request['v'],
+				"r" => $request['r'],
+				"s" => $request['s']
 			]);
 		}
 		
