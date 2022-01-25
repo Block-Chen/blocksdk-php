@@ -1,7 +1,7 @@
 {
 	"name": "block-chen/blocksdk-php",
 	"description": "Pure (no dependencies) implementation of blocksdk", 
-	"keywords": ["blocksdk","blockchen","sdk","bitcoin","dash","monero","litecoin","ethereum","bitcoincash"],
+	"keywords": ["blocksdk","blockchen","sdk","bitcoin","dash","polygon","litecoin","ethereum","bitcoincash"],
 	"type": "library",
 	"license":"Apache-2.0",
 	"authors": [
@@ -19,7 +19,7 @@
 		"psr-4": {
 			"BlockSDK\\": "src/"
 		},
-		"files": ["src/base.php","src/blocksdk.php","src/contractdb.php","src/market.php","src/token.php","src/tool.php","src/webhook.php","src/dash.php","src/bitcoin.php","src/bitcoincash.php","src/ethereum.php","src/litecoin.php","src/monero.php","src/solc.php","src/klaytn.php","src/binancesmart.php"]
+		"files": ["src/base.php","src/blocksdk.php","src/contractdb.php","src/token.php","src/tool.php","src/webhook.php","src/dash.php","src/bitcoin.php","src/bitcoincash.php","src/ethereum.php","src/litecoin.php","src/polygon.php","src/solc.php","src/klaytn.php","src/binancesmart.php"]
 	},
     "require": {
         "php": ">=7.0",
