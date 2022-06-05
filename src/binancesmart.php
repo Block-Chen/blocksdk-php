@@ -23,7 +23,7 @@ class BinanceSmart extends Base{
 		return $this->request("GET","/bsc/address/{$request['address']}/balance");
 	}
 	public function Send($request){
-		return $this->request("POST","/bsc/address/{$request['from']}/sendtoaddress",$request);
+		return $this->request("POST","/bsc/address/{$request['from']}/send",$request);
 	}
 	public function SendTransaction($request){
 		return $this->request("POST","/bsc/transaction/send",$request);
