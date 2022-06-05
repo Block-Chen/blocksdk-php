@@ -4,13 +4,17 @@ namespace BlockSDK;
 
 class Base{
     public $api_token;
+    public $endpoint;
+    public $version;
 
-    function __construct(string $api_token = ''){
+    function __construct(string $api_token = '',string $endpoint = "https://testnet-api.blocksdk.com",string $version = "v3"){
         $this->api_token = $api_token;
+        $this->endpoint  = $endpoint;
+        $this->version   = $version;
     }
 
     public function request($method,$path,$data = []){
-        $url = "https://api.blocksdk.com/v2" . $path;
+        $url = $this->endpoint . "/" . $this->version . "/" . $path;
 
         if($method == "GET" && count($data) > 0){
             $url = $url . "?";
