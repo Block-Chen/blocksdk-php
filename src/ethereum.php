@@ -23,7 +23,7 @@ class Ethereum extends Base{
 		return $this->request("GET","/eth/address/{$request['address']}/balance");
 	}
 	public function Send($request){
-		return $this->request("POST","/eth/address/{$request['from']}/sendtoaddress",$request);
+		return $this->request("POST","/eth/address/{$request['from_address']}/sendtoaddress",$request);
 	}
 	public function SendTransaction($request){
 		return $this->request("POST","/eth/transaction/send",$request);
@@ -38,10 +38,10 @@ class Ethereum extends Base{
 		return $this->request("GET","/eth/token/{$request['contract_address']}/info");
 	}
 	public function SendToken($request){
-		return $this->request("POST","/eth/token/{$request['contract_address']}/{$request['from']}/transfer",$request);
+		return $this->request("POST","/eth/token/{$request['contract_address']}/{$request['from_address']}/transfer",$request);
 	}
 	public function GetTokenBalance($request){
-		return $this->request("GET","/eth/token/{$request['contract_address']}/{$request['from']}/balance");
+		return $this->request("GET","/eth/token/{$request['contract_address']}/{$request['from_address']}/balance");
 	}
 	public function GetTokenTxs($request){
 		return $this->request("GET","/eth/token/{$request['from_address']}/transactions",$request);
