@@ -23,7 +23,7 @@ class Klaytn extends Base{
 		return $this->request("GET","/klay/address/{$request['address']}/balance");
 	}
 	public function Send($request){
-		return $this->request("POST","/klay/address/{$request['from']}/sendtoaddress",$request);
+		return $this->request("POST","/klay/address/{$request['from']}/send",$request);
 	}
 	public function SendTransaction($request){
 		return $this->request("POST","/klay/transaction/send",$request);
