@@ -23,7 +23,7 @@ class EthereumClassic extends Base{
 		return $this->request("GET","/etc/address/{$request['address']}/balance");
 	}
 	public function Send($request){
-		return $this->request("POST","/etc/address/{$request['from']}/sendtoaddress",$request);
+		return $this->request("POST","/etc/address/{$request['from']}/send",$request);
 	}
 	public function SendTransaction($request){
 		return $this->request("POST","/etc/transaction/send",$request);
