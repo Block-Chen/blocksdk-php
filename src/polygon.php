@@ -23,7 +23,7 @@ class Polygon extends Base{
 		return $this->request("GET","/matic/address/{$request['address']}/balance");
 	}
 	public function Send($request){
-		return $this->request("POST","/matic/address/{$request['from']}/sendtoaddress",$request);
+		return $this->request("POST","/matic/address/{$request['from']}/send",$request);
 	}
 	public function SendTransaction($request){
 		return $this->request("POST","/matic/transaction/send",$request);
