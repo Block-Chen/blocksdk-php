@@ -14,7 +14,7 @@ class Base{
     }
 
     public function request($method,$path,$data = []){
-        $url = $this->endpoint . "/" . $this->version . "/" . $path;
+        $url = $this->endpoint . "/" . $this->version . $path;
 
         if($method == "GET" && count($data) > 0){
             $url = $url . "?";
