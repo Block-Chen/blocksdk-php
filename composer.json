@@ -19,7 +19,7 @@
 		"psr-4": {
 			"BlockSDK\\": "src/"
 		},
-		"files": ["src/base.php","src/blocksdk.php","src/ethereum.php","src/polygon.php","src/klaytn.php","src/binancesmart.php","src/avalanche.php","src/ethereumclassic.php"]
+		"files": ["src/base.php","src/blocksdk.php","src/ethereum.php","src/polygon.php","src/klaytn.php","src/binancesmart.php","src/avalanche.php","src/ethereumclassic.php","src/solc.php"]
 	},
     "require": {
         "php": ">=7.0",
