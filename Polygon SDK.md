@@ -154,7 +154,7 @@ $result = $maticClient->GetTokenInfo([
 GET /v3/matic/token/<contract_address>/<from_address>/balance
 ```
 ```php
-$result = $maticClient->GetTokenInfo([
+$result = $maticClient->GetTokenBalance([
     'contract_address' => "ERC20 토큰 컨트렉트 주소",
     'from_address' => "잔액을 조회할 주소"
 ]);
@@ -165,7 +165,7 @@ $result = $maticClient->GetTokenInfo([
 POST /v3/matic/token/<contract_address>/<from_address>/transfer
 ```
 ```php
-$result = $maticClient->GetTokenInfo([
+$result = $maticClient->SendToken([
     'contract_address' => "ERC20 토큰 컨트렉트 주소",
     'from_address' => "토큰을 전송할 주소",
     'to' => "주소",
@@ -199,7 +199,7 @@ $result = $maticClient->GetTokenContractTxs([
 ]);
 ```
 
-### ERC20 특정 컨트렉트 거래 조회
+### ERC20 소유내역 조회
 ```
 GET /v3/matic/token/<from_address>/all-balance
 ```
@@ -269,6 +269,7 @@ GET /v3/matic/single-nft/<contract_address>/<owner_address>/owner-nfts
 ```php
 $result = $maticClient->GetSingleNftOwnerNfts([
     'contract_address' => "목록을 조회할 주소",
+    'owner_address' => "월렛 주소",
     'offset' => 0,
     'limit' => 10
 ]);
@@ -461,6 +462,7 @@ POST /v3/matic/contract/<contract_address>/read
 $result = $maticClient->ReadContract([
     'contract_address' => "컨트렉트 주소",
     'method' => "ownerOf",
+    'return_type' => "address",
     'parameter_type' => ["uint256"],
     'parameter_data' => [1]
 ]);

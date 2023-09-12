@@ -154,7 +154,7 @@ $result = $avalancheClient->GetTokenInfo([
 GET /v3/avax/token/<contract_address>/<from_address>/balance
 ```
 ```php
-$result = $avalancheClient->GetTokenInfo([
+$result = $avalancheClient->GetTokenBalance([
     'contract_address' => "ERC20 토큰 컨트렉트 주소",
     'from_address' => "잔액을 조회할 주소"
 ]);
@@ -165,7 +165,7 @@ $result = $avalancheClient->GetTokenInfo([
 POST /v3/avax/token/<contract_address>/<from_address>/transfer
 ```
 ```php
-$result = $avalancheClient->GetTokenInfo([
+$result = $avalancheClient->SendToken([
     'contract_address' => "ERC20 토큰 컨트렉트 주소",
     'from_address' => "토큰을 전송할 주소",
     'to' => "주소",
@@ -199,7 +199,7 @@ $result = $avalancheClient->GetTokenContractTxs([
 ]);
 ```
 
-### ERC20 특정 컨트렉트 거래 조회
+### ERC20 소유내역 조회
 ```
 GET /v3/avax/token/<from_address>/all-balance
 ```
@@ -269,6 +269,7 @@ GET /v3/avax/single-nft/<contract_address>/<owner_address>/owner-nfts
 ```php
 $result = $avalancheClient->GetSingleNftOwnerNfts([
     'contract_address' => "목록을 조회할 주소",
+    'owner_address' => "월렛 주소",
     'offset' => 0,
     'limit' => 10
 ]);
@@ -460,7 +461,8 @@ POST /v3/avax/contract/<contract_address>/read
 ```php
 $result = $avalancheClient->ReadContract([
     'contract_address' => "컨트렉트 주소",
-    'mavaxod' => "ownerOf",
+    'method' => "ownerOf",
+    'return_type' => "address",
     'parameter_type' => ["uint256"],
     'parameter_data' => [1]
 ]);
@@ -476,7 +478,7 @@ $result = $avalancheClient->WriteContract([
     'contract_address' => "컨트렉트 주소",
     'from' => "트랜잭션을 생성할 주소",
     'private_key' => "from 의 프라이빗키",
-    'mavaxod' => "transfer",
+    'method' => "transfer",
     'parameter_type' => ["uint256"],
     'parameter_data' => [1]
 ]);
