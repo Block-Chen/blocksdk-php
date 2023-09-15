@@ -16,7 +16,7 @@ class EthereumClassic extends Base{
 		return $this->request("POST","/etc/address",$request);
 	}
 	public function GetAddressInfo($request){
-		return $this->request("GET","/etc/address/{$request['address']}",$$request);
+		return $this->request("GET","/etc/address/{$request['address']}/info",$$request);
 	}
 	public function GetAddressBalance($request){
 

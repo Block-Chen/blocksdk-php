@@ -16,7 +16,7 @@ class Avalanche extends Base{
 		return $this->request("POST","/avax/address",$request);
 	}
 	public function GetAddressInfo($request){
-		return $this->request("GET","/avax/address/{$request['address']}",$$request);
+		return $this->request("GET","/avax/address/{$request['address']}/info",$$request);
 	}
 	public function GetAddressBalance($request){
 

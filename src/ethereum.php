@@ -16,7 +16,7 @@ class Ethereum extends Base{
 		return $this->request("POST","/eth/address",$request);
 	}
 	public function GetAddressInfo($request){
-		return $this->request("GET","/eth/address/{$request['address']}",$$request);
+		return $this->request("GET","/eth/address/{$request['address']}/info",$$request);
 	}
 	public function GetAddressBalance($request){
 

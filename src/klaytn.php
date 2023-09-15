@@ -16,7 +16,7 @@ class Klaytn extends Base{
 		return $this->request("POST","/klay/address",$request);
 	}
 	public function GetAddressInfo($request){
-		return $this->request("GET","/klay/address/{$request['address']}",$$request);
+		return $this->request("GET","/klay/address/{$request['address']}/info",$$request);
 	}
 	public function GetAddressBalance($request){
 

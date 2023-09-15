@@ -16,7 +16,7 @@ class BinanceSmart extends Base{
 		return $this->request("POST","/bsc/address",$request);
 	}
 	public function GetAddressInfo($request){
-		return $this->request("GET","/bsc/address/{$request['address']}",$$request);
+		return $this->request("GET","/bsc/address/{$request['address']}/info",$$request);
 	}
 	public function GetAddressBalance($request){
 

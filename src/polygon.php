@@ -16,7 +16,7 @@ class Polygon extends Base{
 		return $this->request("POST","/matic/address",$request);
 	}
 	public function GetAddressInfo($request){
-		return $this->request("GET","/matic/address/{$request['address']}",$$request);
+		return $this->request("GET","/matic/address/{$request['address']}/info",$$request);
 	}
 	public function GetAddressBalance($request){
 
